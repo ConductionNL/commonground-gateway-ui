@@ -99,18 +99,18 @@ const useStyles = makeStyles((theme) => ({
     width: 250,
   },
   appbar: {
-    backgroundColor: '#00A5C7'
+    backgroundColor: '#4376FC'
   },
 }));
 
 const handleLogout = (context) => {
 
   if (typeof window !== "undefined") {
-      context.user = null;
+    context.user = null;
 
-      // @ts-ignore
-      window.location.href = 'http://localhost/logout';
-    }
+    // @ts-ignore
+    window.location.href = 'http://localhost/logout';
+  }
 }
 
 export default function MainMenu() {
@@ -143,57 +143,97 @@ export default function MainMenu() {
       <AppBar position="static" className={classes.appbar}>
         <Container>
           <Toolbar>
+            <Box style={{marginRight: "25px"}}>
+              <Typography variant="h6" color="inherit">
+                <Link href="/sources">
+                  <span style={{color: 'white'}}>
+                    Sources
+                  </span>
+                </Link>
+              </Typography>
+            </Box>
+            <Box style={{marginRight: "25px"}}>
+              <Typography variant="h6" color="inherit">
+                <Link href="/entities">
+                  <span style={{color: 'white'}}>
+                    Entities
+                  </span>
+                </Link>
+              </Typography>
+            </Box>
+            <Box style={{marginRight: "25px"}}>
+              <Typography variant="h6" color="inherit">
+                <Link href="/data">
+                  <span style={{color: 'white'}}>
+                    Data
+                  </span>
+                </Link>
+              </Typography>
+            </Box>
+
+            <Box style={{marginRight: "25px"}}>
+              <Typography variant="h6" color="inherit">
+                <Link href="/logs">
+                  <span style={{color: 'white'}}>
+                    Logs
+                  </span>
+                </Link>
+              </Typography>
+            </Box>
 
             {
-            <div className={classes.sectionMobile}>
-              <IconButton aria-label="show 17 new notifications" color="inherit"
-                          onClick={toggleDrawer('displayUserDrawer', true)}>
-                <MenuIcon/>
-              </IconButton>
-              <Drawer anchor={'left'} open={state['displayUserDrawer']}
-                      onClose={toggleDrawer('displayUserDrawer', false)}>
-                <div
-                  className={classes.list}
-                  role="presentation"
-                  onClick={toggleDrawer('displayUserDrawer', false)}
-                  onKeyDown={toggleDrawer('displayUserDrawer', false)}
-                >
-                  <ActionMenu/>
-                </div>
-              </Drawer>
-            </div>
+              <div className={classes.sectionMobile}>
+                <IconButton aria-label="show 17 new notifications" color="inherit"
+                            onClick={toggleDrawer('displayUserDrawer', true)}>
+                  <MenuIcon/>
+                </IconButton>
+                <Drawer anchor={'left'} open={state['displayUserDrawer']}
+                        onClose={toggleDrawer('displayUserDrawer', false)}>
+                  <div
+                    className={classes.list}
+                    role="presentation"
+                    onClick={toggleDrawer('displayUserDrawer', false)}
+                    onKeyDown={toggleDrawer('displayUserDrawer', false)}
+                  >
+                    <ActionMenu/>
+                  </div>
+                </Drawer>
+              </div>
             }
 
             <div className={classes.grow}/>
 
-            <Box style={{marginRight: "15px"}}>
-              <Typography variant="h6" color="inherit">
-                {
-                  context.user !== null &&
-                  <Link href="/user" >
-                  <span style={{color: 'white'}}>
-                    {
-                      context.user.name
-                    }
-                  </span>
-                  </Link>
-                }
 
-              </Typography>
-            </Box>
-            <Box marginRight={2}>
-              <Typography variant="h6" color="inherit">
-                    {
-                      context.user !== null
-                        ?
-                          <span onClick={() => {handleLogout(context)}} style={{color: 'white'}}>Uitloggen</span>
-                        :
-                          <Link href="http://localhost/login/adfs/conduction" >
-                            <span style={{color: 'white'}}>Inloggen</span>
-                          </Link>
-                    }
-              </Typography>
-            </Box>
+            {/*<Box style={{marginRight: "15px"}}>*/}
+            {/*  <Typography variant="h6" color="inherit">*/}
+            {/*    {*/}
+            {/*      context.user !== null &&*/}
+            {/*      <Link href="/user">*/}
+            {/*      <span style={{color: 'white'}}>*/}
+            {/*        {*/}
+            {/*          context.user.name*/}
+            {/*        }*/}
+            {/*      </span>*/}
+            {/*      </Link>*/}
+            {/*    }*/}
+
+            {/*  </Typography>*/}
+            {/*</Box>*/}
+            {/*<Box marginRight={2}>*/}
+            {/*  <Typography variant="h6" color="inherit">*/}
+            {/*    {*/}
+            {/*      context.user !== null*/}
+            {/*        ?*/}
+            {/*        <span onClick={() => {*/}
+            {/*          handleLogout(context)*/}
+            {/*        }} style={{color: 'white'}}>Uitloggen</span>*/}
+            {/*        :*/}
+            {/*        <Link href="http://localhost/login/adfs/conduction">*/}
+            {/*          <span style={{color: 'white'}}>Inloggen</span>*/}
+            {/*        </Link>*/}
+            {/*    }*/}
+            {/*  </Typography>*/}
+            {/*</Box>*/}
 
           </Toolbar>
         </Container>

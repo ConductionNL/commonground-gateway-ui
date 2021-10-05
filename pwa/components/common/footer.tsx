@@ -61,13 +61,13 @@ export default function Footer() {
       <Box
         px={{ xs: 3, sm: 10 }}
         py={{ xs: 5, sm: 10 }}
-        bgcolor="#A3B2B6"
+        bgcolor="#21303F"
         color="white"
         className={classes.sectionDesktop}
       >
         <Container maxWidth="lg">
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box borderBottom={1}>Help</Box>
               <Box>
                 <Link href="/" color="inherit">
@@ -86,35 +86,35 @@ export default function Footer() {
               </Box>
             </Grid>
 
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Participerende gemeenten</Box>
-              <Box>Deventer
-              </Box>
-              <Box>Enschede
-              </Box>
-              <Box>Groningen
-              </Box>
-              <Box>Leeuwarden</Box>
-              <Box>Zaanstad
-              </Box>
-              <Box>Zwolle
-              </Box>
-            </Grid>
+            {/*<Grid item xs={12} sm={4}>*/}
+            {/*  <Box borderBottom={1}>Participerende gemeenten</Box>*/}
+            {/*  <Box>Deventer*/}
+            {/*  </Box>*/}
+            {/*  <Box>Enschede*/}
+            {/*  </Box>*/}
+            {/*  <Box>Groningen*/}
+            {/*  </Box>*/}
+            {/*  <Box>Leeuwarden</Box>*/}
+            {/*  <Box>Zaanstad*/}
+            {/*  </Box>*/}
+            {/*  <Box>Zwolle*/}
+            {/*  </Box>*/}
+            {/*</Grid>*/}
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box borderBottom={1}>Contact</Box>
               <Box>
-                  Stadhuisplein 100 <br />
-                  1506 MZ Zaandam
+                  Lauriergracht 14h <br />
+                  1016 RL Amsterdam
               </Box>
               <Box>
-                <Link href="tel:14 075" color="inherit">
-                14 075
+                <Link href="tel:+31 (0)85 3036840" color="inherit">
+                  +31 (0)85 3036840
                 </Link>
               </Box>
               <Box>
-                <Link href="mailto:info@Zaanstad.nl" color="inherit">
-                  info@Zaanstad.nl
+                <Link href="mailto:info@conduction.nl" color="inherit">
+                  info@conduction.nl
                 </Link>
               </Box>
             </Grid>

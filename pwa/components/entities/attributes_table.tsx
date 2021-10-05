@@ -5,11 +5,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
-import { DataGrid } from '@mui/x-data-grid';
 import {useGet} from "restful-react";
 
-export default function ClaimsTable() {
+export default function AttributeTable({objectId}) {
 
   var { data: documents } = useGet({
     path: "gateways/documenten/enkelvoudiginformatieobjecten"
@@ -24,19 +24,17 @@ export default function ClaimsTable() {
     }
   }
 
-  function createData(
+  function createData (
+    id: string,
     name: string,
-    router: string,
-    gateway: string,
-    endpoint: string,
-    extend: boolean,
+    type: string
   ) {
-    return { name, router, gateway, endpoint, extend};
+    return {id, name, type};
   }
 
 
   const rows = [
-    createData('LearningNeed', '/api/learning_needs', '@uc_api', 'learning_needs', false)
+    createData('123', 'referringOrganization', 'string')
   ];
 
 
@@ -46,10 +44,8 @@ export default function ClaimsTable() {
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
-            <TableCell align="right">Route</TableCell>
-            <TableCell align="right">Gateway</TableCell>
-            <TableCell align="right">Endpoint</TableCell>
-            <TableCell align="right">Extend</TableCell>
+            <TableCell align="right">Type</TableCell>
+            <TableCell align="right"><Link href={"/attributes/new"}>Add new</Link></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,10 +57,8 @@ export default function ClaimsTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.router}</TableCell>
-              <TableCell align="right">{row.gateway}</TableCell>
-              <TableCell align="right">{row.endpoint}</TableCell>
-              <TableCell align="right">{row.extend}</TableCell>
+              <TableCell align="right">{row.type}</TableCell>
+              <TableCell align="right"><Link href={'/attributes/' + row.id}>View</Link></TableCell>
             </TableRow>
           ))}
         </TableBody>

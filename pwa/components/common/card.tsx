@@ -24,7 +24,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function StandardCard({smallUpperTitle = null, title = null, secondaryTitle = null, description = null, link = null}       ) {
+export default function StandardCard({smallUpperTitle = null, title = null, secondaryTitle = null, description = null, link = null, linkText = 'Lees meer'}       ) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -59,7 +59,7 @@ export default function StandardCard({smallUpperTitle = null, title = null, seco
       <CardActions style={{marginTop: "auto"}}>
         <Button size="small" >
           <Link href={link}>
-            Lees meer
+            {linkText}
           </Link>
         </Button>
       </CardActions>

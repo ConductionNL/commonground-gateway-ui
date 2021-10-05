@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'flex',
     },
+    marginTop: '20px'
   },
   sectionMobile: {
     display: 'flex',
@@ -19,13 +20,18 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  header: {
+    backgroundColor: '#4376FC',
+    marginTop: '-16px',
+    paddingTop: '20px'
+  }
 }));
 
 export default function Header() {
 
   const classes = useStyles();
   return (
-    <header>
+    <header className={classes.header}>
 
       <div className={classes.sectionDesktop}>
         <Logo />
