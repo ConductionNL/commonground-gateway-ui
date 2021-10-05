@@ -69,7 +69,8 @@ export default function FormPropsTextFields() {
                     <MenuItem value={50}>boolean</MenuItem>
                     <MenuItem value={60}>object</MenuItem>
                     <MenuItem value={70}>date</MenuItem>
-                    <MenuItem value={80}>date-time</MenuItem>
+                    <MenuItem value={80}>datetime</MenuItem>
+                    <MenuItem value={90}>number</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>
@@ -88,6 +89,10 @@ export default function FormPropsTextFields() {
                     <MenuItem value={20}>email</MenuItem>
                     <MenuItem value={30}>telephone</MenuItem>
                     <MenuItem value={40}>countryCode</MenuItem>
+                    <MenuItem value={50}>bsn</MenuItem>
+                    <MenuItem value={60}>url</MenuItem>
+                    <MenuItem value={70}>uuid</MenuItem>
+                    <MenuItem value={80}>json</MenuItem>
                   </Select>
                 </FormControl>
               </Grid>

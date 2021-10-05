@@ -27,20 +27,16 @@ function Attribute() {
   return <>
     <Layout title={title} description="waar kan ik deze description zien">
 
-      <Grid container >
+      <Grid container>
         <Grid item sm={12} md={12}>
-          <PageHeader title={title} />
+          <PageHeader title={title}/>
           <Box paddingTop={2} paddingBottom={2}>
             <p>{description}</p>
           </Box>
 
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={12}>
-              <Card className={classes.root}>
-                <CardContent>
-                  <AttributesForm/>
-                </CardContent>
-              </Card>
+              <AttributesForm/>
             </Grid>
           </Grid>
         </Grid>
