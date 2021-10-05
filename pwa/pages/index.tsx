@@ -35,17 +35,17 @@ const Welcome = () => (
       <Grid container spacing={2}>
         <Grid item xs={12} sm={8} md={6}>
           <PaperCard
-            title="Gateways"
-            description="Bekijk en wijzig gateways hier."
-            link="/gateways"
-            linkText="Bekijken "
+            title="Sources"
+            description="View and edit sources here."
+            link="/sources"
+            linkText="View "
           />
         </Grid>
         <Grid item xs={12} sm={8} md={6}>
           <PaperCard
-            title="Objects"
+            title="Entities"
             description="Bekijk en wijzig objecten van uw gateway hier."
-            link="/objects"
+            link="/entities"
             linkText="Bekijken "
           />
         </Grid>
