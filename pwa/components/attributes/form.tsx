@@ -135,6 +135,13 @@ export default function FormPropsTextFields() {
                   </RadioGroup>
                 </FormControl>
               </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={6} sm={6} md={6} style={{float: "right"}}>
+                  <div>
+                    <Button variant="outlined">Bewerken</Button>
+                  </div>
+                </Grid>
+              </Grid>
             </CardContent>
           </Card>
         </Grid>
@@ -402,15 +409,15 @@ export default function FormPropsTextFields() {
                   variant="standard"
                 />
               </Grid>
+              <Grid container spacing={2}>
+                <Grid item xs={6} sm={6} md={6}>
+                  <div>
+                    <Button variant="outlined">Bewerken</Button>
+                  </div>
+                </Grid>
+              </Grid>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid container spacing={2}>
-          <Grid item xs={6} sm={6} md={6}>
-            <div>
-              <Button variant="outlined">Outlined</Button>
-            </div>
-          </Grid>
         </Grid>
       </Grid>
     </Box>
