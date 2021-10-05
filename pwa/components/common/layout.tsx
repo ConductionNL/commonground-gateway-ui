@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Layout = ({children, title="Welcome to Demodam!", h1 =null, description="default-description"}) => {
+const Layout = ({children, title="Welcome to the gateway!", h1 =null, description="default-description"}) => {
 
   const classes = useStyles();
 
