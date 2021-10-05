@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import {useGet} from "restful-react";
 
-export default function ClaimsTable() {
+export default function ObjectTable({gatewayId}) {
 
   var { data: documents } = useGet({
     path: "gateways/documenten/enkelvoudiginformatieobjecten"
@@ -67,7 +67,7 @@ export default function ClaimsTable() {
               <TableCell align="right">{row.gateway}</TableCell>
               <TableCell align="right">{row.endpoint}</TableCell>
               <TableCell align="right">{row.extend}</TableCell>
-              <TableCell align="right"><Link href={'/objects/' + row.id}>View</Link></TableCell>
+              <TableCell align="right"><Link href={'/gateways/' + gatewayId + '/objects/' + row.id}>View</Link></TableCell>
             </TableRow>
           ))}
         </TableBody>

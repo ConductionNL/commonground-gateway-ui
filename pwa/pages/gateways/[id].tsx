@@ -123,7 +123,7 @@ const Product = () => {
               </Card>
             </TabPanel>
             <TabPanel value={value} index="two">
-              <ObjectsTable/>
+              <ObjectsTable gatewayId={title} />
             </TabPanel>
             <TabPanel value={value} index="three">
               Get and show logs here from gateway
