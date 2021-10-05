@@ -3,14 +3,9 @@ import Button from "@material-ui/core/Button";
 import React from "react";
 import Link from 'next/link'
 
-import Header from "../../components/common/header";
-import Container from "@material-ui/core/Container";
-import Footer from "../../components/common/footer";
 import Typography from '@material-ui/core/Typography';
 import Layout from "../../components/common/layout";
 import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
 import Box from "@material-ui/core/Box";
 import {useGet, Poll, Get, RestfulProvider} from "restful-react";
@@ -20,12 +15,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CasesTable from "../../components/cases/table";
-import OverviewInfo from "../../components/cases/overview_info";
-import ContactPerson from "../../components/cases/contact_person";
-import TasksTable from "../../components/tasks/table";
-import ObjectsTable from "../../components/gateways/object_table";
-import ClaimsTable from "../../components/claims/table";
+import AttributesTable from "../../components/objects/attributes_table";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -123,7 +113,7 @@ const Product = () => {
               </Card>
             </TabPanel>
             <TabPanel value={value} index="two">
-              <ObjectsTable gatewayId={title} />
+              <AttributesTable gatewayId={title} />
             </TabPanel>
             <TabPanel value={value} index="three">
               Get and show data here from gateway
