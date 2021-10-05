@@ -28,17 +28,25 @@ const handleLogin = () => {
 
 const Welcome = () => (
   <>
-    <Layout title="Welkom op de gateway!" description="waar kan ik deze description zien">
+    <Layout title="Welkom op de gateway interface!" description="waar kan ik deze description zien">
       {
         handleLogin()
       }
       <Grid container spacing={2}>
         <Grid item xs={12} sm={8} md={6}>
           <PaperCard
+            title="Gateways"
+            description="Bekijk en wijzig gateways hier."
+            link="/gateways"
+            linkText="Bekijken "
+          />
+        </Grid>
+        <Grid item xs={12} sm={8} md={6}>
+          <PaperCard
             title="Objects"
             description="Bekijk en wijzig objecten van uw gateway hier."
             link="/objects"
-            linkText="Objects "
+            linkText="Bekijken "
           />
         </Grid>
       </Grid>

@@ -145,18 +145,9 @@ export default function MainMenu() {
           <Toolbar>
             <Box style={{marginRight: "25px"}}>
               <Typography variant="h6" color="inherit">
-                <Link href="/objects">
+                <Link href="/gateways">
                   <span style={{color: 'white'}}>
-                    Objects
-                  </span>
-                </Link>
-              </Typography>
-            </Box>
-            <Box style={{marginRight: "25px"}}>
-              <Typography variant="h6" color="inherit">
-                <Link href="/attributes">
-                  <span style={{color: 'white'}}>
-                    Attributes
+                    Gateways
                   </span>
                 </Link>
               </Typography>

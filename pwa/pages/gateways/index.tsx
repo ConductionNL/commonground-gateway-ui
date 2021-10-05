@@ -23,59 +23,57 @@ function Index() {
     },
   });
 
-  const title = 'Home';
+  const title = 'Gateways';
   const classes = useStyles();
 
   return <>
     <Layout title={title} description="waar kan ik deze description zien" >
 
       <Grid container >
-        <Hidden smDown>
-          <Grid item md={3}>
-            <ActionMenu />
-          </Grid>
-        </Hidden>
         <Grid item sm={12} md={9}>
           <PageHeader title={title} />
 
           <Box paddingTop={2} paddingBottom={2}>
 
-            <Alert severity="error" style={{marginBottom: "10px"}}>
-              <AlertTitle>HET CORONAVIRUS IN ZAANSTAD</AlertTitle>
-              Volg deze <strong><Link href={"/user"}>link</Link></strong> voor de laatste informatie.
-            </Alert>
+            <h6>U can view your installed/owned gateways here.</h6>
 
             <Grid className={classes.marginTop} item xs container direction="row" spacing={2}>
               <Grid item xs={12} >
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={6} md={5} lg={4}>
                       <StandardCard
-                        title="Paspoort/id kaart aanvragen"
-                        link="https://www.zaanstad.nl/mozard/!suite86.scherm0325?mVrg=221"
+                        title="BiSC"
+                        description="De gateway voor de BiSC omgeving"
+                        link="/gateways/BiSC"
+                        linkText="View"
                       />
                     </Grid>
-                  <Grid item xs={12} sm={6} md={5} lg={4}>
-                    <StandardCard
-                      title="Melding maken"
-                      link="https://www.zaanstad.nl/mozard/!suite86.scherm0325?mPag=244"
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6} md={5} lg={4}>
-                    <StandardCard
-                      title="Afspraak maken"
-                      link="https://www.zaanstad.nl/mozard/!suite86.scherm0325?mPag=243"
-                    />
-                  </Grid>
+                    <Grid item xs={12} sm={6} md={5} lg={4}>
+                      <StandardCard
+                        title="BiSC"
+                        description="De gateway voor de BiSC omgeving"
+                        link="/gateways/BiSC"
+                        linkText="View"
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={5} lg={4}>
+                      <StandardCard
+                        title="BiSC"
+                        description="De gateway voor de BiSC omgeving"
+                        link="/gateways/BiSC"
+                        linkText="View"
+                      />
+                    </Grid>
                 </Grid>
               </Grid>
-              <Grid item xs={6} >
-                <Typography variant="h6">Berichten</Typography>
-                <Messages />
-              </Grid>
-              <Grid item xs={6} >
-                <Typography variant="h6">Taken</Typography>
-                <TaskList />
-              </Grid>
+              {/*<Grid item xs={6} >*/}
+              {/*  <Typography variant="h6">Berichten</Typography>*/}
+              {/*  <Messages />*/}
+              {/*</Grid>*/}
+              {/*<Grid item xs={6} >*/}
+              {/*  <Typography variant="h6">Taken</Typography>*/}
+              {/*  <TaskList />*/}
+              {/*</Grid>*/}
             </Grid>
           </Box>
         </Grid>
