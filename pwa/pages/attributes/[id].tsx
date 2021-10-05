@@ -6,6 +6,8 @@ import Box from "@material-ui/core/Box";
 import {Card, CardContent} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import AttributesForm from "../../components/attributes/form";
+import Button from "@material-ui/core/Button";
+import {HelpRounded} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Attribute() {
   const classes = useStyles();
-  const title = 'Attributes'
+  const title = 'Attribute 1'
   const description = 'Omschrijving over de attributen'
 
   return <>

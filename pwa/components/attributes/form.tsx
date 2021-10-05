@@ -4,7 +4,7 @@ import {Card, TextField} from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import MenuItem from '@material-ui/core/MenuItem';
 import {Select, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} from '@material-ui/core';
-import StandardCard from "../common/paperCard";
+import Button from "@material-ui/core/Button";
 import CardContent from "@material-ui/core/CardContent";
 import {makeStyles} from "@material-ui/core/styles";
 
@@ -52,7 +52,7 @@ export default function FormPropsTextFields() {
                 />
               </Grid>
               <Grid md={12}>
-                <FormControl component="fieldset" fullWidth  margin="normal">
+                <FormControl component="fieldset" fullWidth margin="normal">
                   <FormLabel component="legend">Type</FormLabel>
                   <Select
                     fullWidth
@@ -74,7 +74,7 @@ export default function FormPropsTextFields() {
                 </FormControl>
               </Grid>
               <Grid md={12}>
-                <FormControl component="fieldset" fullWidth margin="normal" >
+                <FormControl component="fieldset" fullWidth margin="normal">
                   <FormLabel component="legend">Format</FormLabel>
                   <Select
                     fullWidth
@@ -188,7 +188,7 @@ export default function FormPropsTextFields() {
                   fullWidth
                   id="maximum"
                   label="Maximum"
-                  type="integer"
+                  type="number"
                   variant="standard"
                 />
               </Grid>
@@ -198,7 +198,7 @@ export default function FormPropsTextFields() {
                   fullWidth
                   id="minimum"
                   label="Minimum"
-                  type="integer"
+                  type="number"
                   variant="standard"
                 />
               </Grid>
@@ -234,7 +234,7 @@ export default function FormPropsTextFields() {
                   fullWidth
                   id="maxLength"
                   label="MaxLength"
-                  type="integer"
+                  type="number"
                   variant="standard"
                 />
               </Grid>
@@ -244,7 +244,7 @@ export default function FormPropsTextFields() {
                   fullWidth
                   id="minLength"
                   label="MinLength"
-                  type="integer"
+                  type="number"
                   variant="standard"
                 />
               </Grid>
@@ -254,7 +254,7 @@ export default function FormPropsTextFields() {
                   fullWidth
                   id="maxItems"
                   label="MaxItems"
-                  type="integer"
+                  type="number"
                   variant="standard"
                 />
               </Grid>
@@ -264,7 +264,7 @@ export default function FormPropsTextFields() {
                   fullWidth
                   id="minItems"
                   label="MinItems"
-                  type="integer"
+                  type="number"
                   variant="standard"
                 />
               </Grid>
@@ -273,8 +273,11 @@ export default function FormPropsTextFields() {
                   margin="normal"
                   fullWidth
                   id="maxDate"
-                  label="MaxItems"
-                  type="integer"
+                  label="MaxDate"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   variant="standard"
                 />
               </Grid>
@@ -283,8 +286,11 @@ export default function FormPropsTextFields() {
                   margin="normal"
                   fullWidth
                   id="minDate"
-                  label="MinItems"
-                  type="integer"
+                  label="MinDate"
+                  type="date"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
                   variant="standard"
                 />
               </Grid>
@@ -381,18 +387,25 @@ export default function FormPropsTextFields() {
                   variant="standard"
                 />
               </Grid>
-                <Grid item md={12}>
-                  <TextField
-                    margin="normal"
-                    fullWidth
-                    id="requiredIf"
-                    label="RequiredIf"
-                    type="text"
-                    variant="standard"
-                  />
+              <Grid item md={12}>
+                <TextField
+                  margin="normal"
+                  fullWidth
+                  id="requiredIf"
+                  label="RequiredIf"
+                  type="text"
+                  variant="standard"
+                />
               </Grid>
             </CardContent>
           </Card>
+        </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={6} sm={6} md={6}>
+            <div>
+              <Button variant="outlined">Outlined</Button>
+            </div>
+          </Grid>
         </Grid>
       </Grid>
     </Box>
