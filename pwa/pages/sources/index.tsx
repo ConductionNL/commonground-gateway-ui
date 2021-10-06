@@ -28,21 +28,6 @@ function Index() {
 
   const title = 'Sources';
   const classes = useStyles();
-
-  var {data: sources} = useGet({
-    path: "/gateways"
-  });
-  console.log('test');
-  console.log(sources);
-  /* lets catch hydra */
-  if (sources != null && sources["results"] !== undefined) {
-    sources = sources["results"];
-
-    for (let i = 0; i < sources.length; i++) {
-      sources[i].id = sources[i].identificatie;
-    }
-  }
-
   const columns = [
     {field: 'id', headerName: 'ID', flex: 1},
     {field: 'name', headerName: 'Name', flex: 1},
@@ -59,7 +44,11 @@ function Index() {
           <Box paddingTop={2} paddingBottom={2}>
 
             <h6>U can view your installed/owned sources here.</h6>
-
+            <Box style={{marginBottom: '5px'}} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+              <Link href="/sources/new">
+                <Button variant="outlined">Add new</Button>
+              </Link>
+            </Box>
             <SourceTable/>
 
           </Box>

@@ -10,14 +10,16 @@ import Paper from '@material-ui/core/Paper';
 import {useGet} from "restful-react";
 import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
 
-export default function EntityTable() {
+export default function EntityTable({entities = null}) {
 
-  var {data: entities} = useGet({
-    path: "/entities"
-  });
-  if (entities != null) {
-    console.log(entities);
+  if (entities == null) {
+    var {data: entities} = useGet({
+      path: "/entities"
+    });
   }
+
+  console.log('entities:');
+  console.log(entities);
 
   /* lets catch hydra */
   if (entities != null && entities["results"] !== undefined) {
@@ -29,12 +31,12 @@ export default function EntityTable() {
   }
 
   const columns = [
-    { field: 'name', headerName: 'Name', flex: 1 },
-    { field: 'endpoint', headerName: 'Endpoint', flex: 1 },
-    { field: 'route', headerName: 'Route', flex: 1 },
+    {field: 'name', headerName: 'Name', flex: 1},
+    {field: 'endpoint', headerName: 'Endpoint', flex: 1},
+    {field: 'route', headerName: 'Route', flex: 1},
     {
       field: 'id',
-      headerName: 'View',renderCell: (params: GridRenderCellParams) => (
+      headerName: 'View', renderCell: (params: GridRenderCellParams) => (
         <strong>
           <Link
             href={"/entities/" + params.value}
@@ -42,7 +44,8 @@ export default function EntityTable() {
             View
           </Link>
         </strong>
-      ),}
+      ),
+    }
   ];
 
 
