@@ -134,10 +134,11 @@ export default function Source() {
                 <Tab label="Main" value="one" {...a11yProps('one')} />
                 {
                   id != 'new' &&
-                  <>
-                    <Tab label="Entities" value="two" {...a11yProps('two')} />
-                    <Tab label="Logs" value="three" {...a11yProps('three')} />
-                  </>
+                  <Tab label="Entities" value="two" {...a11yProps('two')} />
+                }
+                {
+                  id != 'new' &&
+                  <Tab label="Logs" value="three" {...a11yProps('three')} />
                 }
               </Tabs>
 
@@ -156,7 +157,7 @@ export default function Source() {
                   <br/><br/>
 
 
-                  <SourceForm title={title} source={source} />
+                  <SourceForm title={title} source={source}/>
 
                 </CardContent>
               </Card>
