@@ -233,7 +233,7 @@ export default function AttributeForm() {
               <Grid container spacing={2}>
                 <Grid item xs={6} sm={6} md={6} style={{float: "right"}}>
                   <div>
-                    <Button variant="outlined">Bewerken</Button>
+                    <Button variant="outlined">Opslaan</Button>
                   </div>
                 </Grid>
               </Grid>
@@ -783,7 +783,7 @@ export default function AttributeForm() {
               <Grid container spacing={2}>
                 <Grid item xs={6} sm={6} md={6}>
                   <div>
-                    <Button variant="outlined">Bewerken</Button>
+                    <Button variant="outlined">Opslaan</Button>
                   </div>
                 </Grid>
               </Grid>

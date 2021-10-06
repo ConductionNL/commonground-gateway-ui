@@ -14,6 +14,7 @@ import Tab from "@material-ui/core/Tab";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import AttributesTable from "../../components/attributes/table";
+import EntityForm from "../../components/entities/form";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -48,7 +49,7 @@ function a11yProps(index: any) {
   };
 }
 
-export default function Entity()  {
+export default function Entity() {
 
   const router = useRouter()
   const {id} = router.query
@@ -97,7 +98,7 @@ export default function Entity()  {
 
       <Grid container>
 
-        <Grid item xs={12} >
+        <Grid item xs={12}>
           <PageHeader title={title}/>
 
           <Box paddingTop={2} paddingBottom={2}>
@@ -118,28 +119,19 @@ export default function Entity()  {
 
             </AppBar>
             <TabPanel value={value} index="one">
-              <Card className={classes.root}>
-                <CardContent>
-                  Description about entity + some other data we could show
-
-                  <div>
-                    <TextField
-                      required
-                      id="filled-required"
-                      label="Name"
-                      defaultValue={title}
-                      variant="filled"
-                    />
-                  </div>
-                </CardContent>
-              </Card>
+              {
+                entity != undefined && entity != null ?
+                  <EntityForm/>
+                  :
+                  <EntityForm/>
+              }
             </TabPanel>
             <TabPanel value={value} index="two">
               {
                 entity != undefined && entity != null && entity.attributes != null ?
                   <AttributesTable attributes={entity.attributes}/>
                   :
-                  <AttributesTable />
+                  <AttributesTable/>
               }
             </TabPanel>
             <TabPanel value={value} index="three">
