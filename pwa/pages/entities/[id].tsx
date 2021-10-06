@@ -129,7 +129,7 @@ export default function Entity()  {
               </Card>
             </TabPanel>
             <TabPanel value={value} index="two">
-              <AttributesTable gatewayId={title} />
+              <AttributesTable objectId={title} />
             </TabPanel>
             <TabPanel value={value} index="three">
               Get and show data here from gateway

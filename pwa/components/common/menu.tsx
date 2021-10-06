@@ -163,9 +163,9 @@ export default function MainMenu() {
             </Box>
             <Box style={{marginRight: "25px"}}>
               <Typography variant="h6" color="inherit">
-                <Link href="/data">
+                <Link href="/objects">
                   <span style={{color: 'white'}}>
-                    Data
+                    Objects
                   </span>
                 </Link>
               </Typography>
