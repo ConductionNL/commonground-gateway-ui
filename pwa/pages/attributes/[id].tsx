@@ -8,6 +8,10 @@ import {makeStyles} from "@material-ui/core/styles";
 import AttributesForm from "../../components/attributes/form";
 import Button from "@material-ui/core/Button";
 import {HelpRounded} from "@material-ui/icons";
+import {useGet} from "restful-react";
+import {GridRenderCellParams} from "@mui/x-data-grid";
+import Link from "@material-ui/core/Link";
+import {useRouter} from "next/router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Attribute() {
   const classes = useStyles();
-  const title = 'Attribute 1'
+  const title = 'Attribute'
   const description = 'Omschrijving over de attributen'
 
   return <>
@@ -36,7 +40,7 @@ function Attribute() {
 
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12} md={12}>
-              <AttributesForm/>
+                <AttributesForm/>
             </Grid>
           </Grid>
         </Grid>

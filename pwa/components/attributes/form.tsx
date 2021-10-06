@@ -7,6 +7,8 @@ import {Select, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel} fro
 import Button from "@material-ui/core/Button";
 import CardContent from "@material-ui/core/CardContent";
 import {makeStyles} from "@material-ui/core/styles";
+import {useRouter} from "next/router";
+import {useGet} from "restful-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,12 +20,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function FormPropsTextFields() {
+export default function AttributeForm() {
   const classes = useStyles();
+  const router = useRouter()
+  const {id} = router.query
   const [type, setType] = React.useState('');
   const handleChange = (event) => {
     setType(event.target.value);
   };
+
+  var {data: attribute} = useGet({
+    path: "/attributes/" + id
+  });
+  const description = 'Omschrijving over de attributen'
+  console.log(attribute)
 
   return (
     <Box paddingTop={3} paddingBottom={2}>
@@ -31,71 +41,156 @@ export default function FormPropsTextFields() {
         <Grid item xs={6} sm={6} md={6}>
           <Card className={classes.root}>
             <CardContent>
-              <Grid item md={12}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  type="text"
-                  variant="standard"
-                />
-              </Grid>
-              <Grid md={12}>
-                <TextField
-                  margin="normal"
-                  fullWidth
-                  id="description"
-                  label="Description"
-                  type="text"
-                  variant="standard"
-                />
-              </Grid>
-              <Grid md={12}>
-                <FormControl component="fieldset" fullWidth margin="normal">
-                  <FormLabel component="legend">Type</FormLabel>
-                  <Select
-                    fullWidth
-                    labelId="select-label"
-                    id="select"
-                    value={type}
-                    label="Type"
-                    variant="standard"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={20}>string</MenuItem>
-                    <MenuItem value={30}>array</MenuItem>
-                    <MenuItem value={40}>integer</MenuItem>
-                    <MenuItem value={50}>boolean</MenuItem>
-                    <MenuItem value={60}>object</MenuItem>
-                    <MenuItem value={70}>date</MenuItem>
-                    <MenuItem value={80}>datetime</MenuItem>
-                    <MenuItem value={90}>number</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid md={12}>
-                <FormControl component="fieldset" fullWidth margin="normal">
-                  <FormLabel component="legend">Format</FormLabel>
-                  <Select
-                    fullWidth
-                    labelId="select-label"
-                    id="select"
-                    value={type}
-                    label="Format"
-                    variant="standard"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={20}>email</MenuItem>
-                    <MenuItem value={30}>telephone</MenuItem>
-                    <MenuItem value={40}>countryCode</MenuItem>
-                    <MenuItem value={50}>bsn</MenuItem>
-                    <MenuItem value={60}>url</MenuItem>
-                    <MenuItem value={70}>uuid</MenuItem>
-                    <MenuItem value={80}>json</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
+              {
+                attribute != null && attribute != undefined && attribute.name != null ?
+                  <Grid item md={12}>
+                    <TextField
+                      margin="normal"
+                      fullWidth
+                      id="name"
+                      label="Name"
+                      defaultValue={attribute.name}
+                      type="text"
+                      variant="standard"
+                    />
+                  </Grid>
+                  :
+                  <Grid md={12}>
+                    <TextField
+                      margin="normal"
+                      fullWidth
+                      id="name"
+                      label="Name"
+                      type="text"
+                      variant="standard"
+                    />
+                  </Grid>
+              }
+              {
+                attribute != null && attribute != undefined && attribute.description != null ?
+                  <Grid item md={12}>
+                    <TextField
+                      defaultValue={attribute.description}
+                      margin="normal"
+                      fullWidth
+                      id="description"
+                      label="Description"
+                      type="text"
+                      variant="standard"
+                    />
+                  </Grid>
+                  :
+                  <Grid md={12}>
+                    <TextField
+                      margin="normal"
+                      fullWidth
+                      id="description"
+                      label="Description"
+                      type="text"
+                      variant="standard"
+                    />
+                  </Grid>
+              }
+              {
+                attribute != null && attribute != undefined && attribute.type != null ?
+                  <Grid md={12}>
+                    <FormControl component="fieldset" fullWidth margin="normal">
+                      <FormLabel component="legend">Type</FormLabel>
+                      <Select
+                        fullWidth
+                        labelId="select-label"
+                        id="select"
+                        value={type}
+                        label="Type"
+                        variant="standard"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={20}>{attribute.type}</MenuItem>
+                        <MenuItem value={20}>string</MenuItem>
+                        <MenuItem value={30}>array</MenuItem>
+                        <MenuItem value={40}>integer</MenuItem>
+                        <MenuItem value={50}>boolean</MenuItem>
+                        <MenuItem value={60}>object</MenuItem>
+                        <MenuItem value={70}>date</MenuItem>
+                        <MenuItem value={80}>datetime</MenuItem>
+                        <MenuItem value={90}>number</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  :
+                  <Grid md={12}>
+                    <FormControl component="fieldset" fullWidth margin="normal">
+                      <FormLabel component="legend">Type</FormLabel>
+                      <Select
+                        fullWidth
+                        labelId="select-label"
+                        id="select"
+                        value={type}
+                        label="Type"
+                        variant="standard"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={20}>string</MenuItem>
+                        <MenuItem value={30}>array</MenuItem>
+                        <MenuItem value={40}>integer</MenuItem>
+                        <MenuItem value={50}>boolean</MenuItem>
+                        <MenuItem value={60}>object</MenuItem>
+                        <MenuItem value={70}>date</MenuItem>
+                        <MenuItem value={80}>datetime</MenuItem>
+                        <MenuItem value={90}>number</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+              }
+              {
+                attribute != null && attribute != undefined && attribute.format != null ?
+                  <Grid md={12}>
+                    <FormControl component="fieldset" fullWidth margin="normal">
+                      <FormLabel component="legend">Format</FormLabel>
+                      <Select
+                        fullWidth
+                        labelId="select-label"
+                        id="select"
+                        value={type}
+                        label="Format"
+                        variant="standard"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={10}>{attribute.format}</MenuItem>
+                        <MenuItem value={20}>email</MenuItem>
+                        <MenuItem value={30}>telephone</MenuItem>
+                        <MenuItem value={40}>countryCode</MenuItem>
+                        <MenuItem value={50}>bsn</MenuItem>
+                        <MenuItem value={60}>url</MenuItem>
+                        <MenuItem value={70}>uuid</MenuItem>
+                        <MenuItem value={80}>json</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  :
+                  <Grid md={12}>
+                    <FormControl component="fieldset" fullWidth margin="normal">
+                      <FormLabel component="legend">Format</FormLabel>
+                      <Select
+                        fullWidth
+                        labelId="select-label"
+                        id="select"
+                        value={type}
+                        label="Format"
+                        variant="standard"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={20}>email</MenuItem>
+                        <MenuItem value={30}>telephone</MenuItem>
+                        <MenuItem value={40}>countryCode</MenuItem>
+                        <MenuItem value={50}>bsn</MenuItem>
+                        <MenuItem value={60}>url</MenuItem>
+                        <MenuItem value={70}>uuid</MenuItem>
+                        <MenuItem value={80}>json</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Grid>
+              }
               <Grid md={12}>
                 <FormControl component="fieldset" margin="normal">
                   <FormLabel component="legend">PersistToGateway</FormLabel>
