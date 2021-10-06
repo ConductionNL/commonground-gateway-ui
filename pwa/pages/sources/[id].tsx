@@ -1,31 +1,21 @@
 import {useRouter} from 'next/router'
-import Button from "@material-ui/core/Button";
 import React from "react";
 import Link from 'next/link'
 
-import Header from "../../components/common/header";
-import Container from "@material-ui/core/Container";
-import Footer from "../../components/common/footer";
 import Typography from '@material-ui/core/Typography';
 import Layout from "../../components/common/layout";
 import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import ActionMenu from "../../components/common/actionmenu";
 import PageHeader from "../../components/common/pageheader";
 import Box from "@material-ui/core/Box";
 import {useGet, Poll, Get, RestfulProvider} from "restful-react";
 import {Theme, createStyles, makeStyles} from '@material-ui/core/styles';
-import {AppBar, TextField} from "@material-ui/core";
+import {AppBar, IconButton, TextField, Tooltip} from "@material-ui/core";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CasesTable from "../../components/cases/table";
-import OverviewInfo from "../../components/cases/overview_info";
-import ContactPerson from "../../components/cases/contact_person";
-import TasksTable from "../../components/tasks/table";
 import EntitiesTable from "../../components/entities/entity_table";
-import ClaimsTable from "../../components/claims/table";
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -64,11 +54,13 @@ export default function Source() {
 
   const router = useRouter()
   const {id} = router.query
+  var source = null
 
   if (id != 'new') {
-    var {data: source} = useGet({
+    var {data: retrievedSource} = useGet({
       path: "http://localhost/api/gateways/" + id
     });
+    source = retrievedSource;
   }
 
   console.log('Source');
@@ -78,7 +70,7 @@ export default function Source() {
   if (id == 'new') {
     title = 'New source';
   }
-  if (source != null && source != undefined) {
+  if (source != null) {
     title = source.name;
   }
 
@@ -141,25 +133,117 @@ export default function Source() {
               <Card className={classes.root}>
                 <CardContent>
                   Manage your source here
+                  <Tooltip title="View redoc">
+                    <a target="_blank" href="https://commonground-gateway.readthedocs.io/en/development/features/">
+                      <IconButton>
+                        <HelpOutlineIcon color="primary"/>
+                      </IconButton>
+                    </a>
+                  </Tooltip>
                   <br/><br/>
-                  <div>
-                    <TextField
-                      required
-                      id="filled-required"
-                      label="Name"
-                      defaultValue={title}
-                      variant="filled"
-                    />
-                    <br/>
-                    <TextField
-                      id="filled-multiline-static"
-                      label="Description"
-                      multiline
-                      rows={4}
-                      defaultValue="Description about gateway"
-                      variant="filled"
-                    />
-                  </div>
+                  <Grid item xs={6} sm={6} md={6}>
+                    <Grid item xs={12}>
+                      {
+                        source != null && source.name != null ?
+                          <TextField
+                            required
+                            id="name"
+                            label="Name"
+                            defaultValue={source.name}
+                            variant="filled"
+                            fullWidth
+                          /> :
+                          <TextField
+                            required
+                            id="name"
+                            label="Name"
+                            defaultValue={title}
+                            variant="filled"
+                            fullWidth
+                          />
+                      }
+                    </Grid>
+                    <Grid item xs={12}>
+                      {
+                        source != null && source.description != null ?
+                          <TextField
+                            id="description"
+                            label="Description"
+                            multiline
+                            rows={4}
+                            defaultValue={source.description}
+                            variant="filled"
+                            fullWidth
+                          /> :
+                          <TextField
+                            id="description"
+                            label="Description"
+                            multiline
+                            rows={4}
+                            variant="filled"
+                            fullWidth
+                          />
+                      }
+                    </Grid>
+                    <Grid item xs={12}>
+                      {
+                        source != null && source.location != null ?
+                          <TextField
+                            required
+                            id="location"
+                            label="Location"
+                            defaultValue={source.location}
+                            variant="filled"
+                            fullWidth
+                          />:
+                          <TextField
+                            required
+                            id="location"
+                            label="Location"
+                            variant="filled"
+                            fullWidth
+                          />
+                      }
+                    </Grid>
+                    <Grid item xs={12}>
+                      {
+                        source != null && source.auth != null ?
+                          <TextField
+                            required
+                            id="auth"
+                            label="Auth"
+                            defaultValue={source.auth}
+                            variant="filled"
+                            fullWidth
+                          />:
+                          <TextField
+                            required
+                            id="auth"
+                            label="Auth"
+                            variant="filled"
+                            fullWidth
+                          />
+                      }
+                    </Grid>
+                    <Grid item xs={12}>
+                      {
+                        source != null && source.locale != null ?
+                          <TextField
+                            id="locale"
+                            label="Locale"
+                            defaultValue={source.locale}
+                            variant="filled"
+                            fullWidth
+                          />:
+                          <TextField
+                            id="locale"
+                            label="Locale"
+                            variant="filled"
+                            fullWidth
+                          />
+                      }
+                    </Grid>
+                  </Grid>
                 </CardContent>
               </Card>
             </TabPanel>
