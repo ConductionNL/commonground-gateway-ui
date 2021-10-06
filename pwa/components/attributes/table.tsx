@@ -10,47 +10,50 @@ import Paper from '@material-ui/core/Paper';
 import {useGet} from "restful-react";
 import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
 
-export default function EntityTable() {
+export default function AttributeTable({attributes = null}) {
 
-  var {data: sources} = useGet({
-    path: "/gateways"
-  });
+  if (attributes == null) {
+    var {data: attributes} = useGet({
+      path: "/attributes"
+    });
+  }
+
+  console.log('attributes:');
+  console.log(attributes);
 
   /* lets catch hydra */
-  if (sources != null && sources["results"] !== undefined) {
-    sources = sources["results"];
+  if (attributes != null && attributes["results"] !== undefined) {
+    attributes = attributes["results"];
 
-    for (let i = 0; i < sources.length; i++) {
-      sources[i].id = sources[i].identificatie;
+    for (let i = 0; i < attributes.length; i++) {
+      attributes[i].id = attributes[i].identificatie;
     }
   }
 
   const columns = [
-    { field: 'name', headerName: 'Name', flex: 1 },
-    { field: 'auth', headerName: 'Auth', flex: 1 },
-    { field: 'documentation', headerName: 'Documentation', flex: 3 },
-    { field: 'location', headerName: 'Location', flex: 3 },
-    {
+    {field: 'name', headerName: 'Name', flex: 1},
+    {field: 'type', headerName: 'Type', flex: 1}, {
       field: 'id',
-      headerName: 'View',renderCell: (params: GridRenderCellParams) => (
+      headerName: 'View', renderCell: (params: GridRenderCellParams) => (
         <strong>
           <Link
-            href={"/sources/" + params.value}
+            href={"/attributes/" + params.value}
           >
             View
           </Link>
         </strong>
-      ),}
+      ),
+    }
   ];
 
 
   return (
     <div style={{height: 400, width: '100%'}}>
-      {sources ? (
+      {attributes ? (
           <DataGrid
-            rows={sources}
+            rows={attributes}
             columns={columns}
-            pageSize={10}
+            pageSize={20}
             rowsPerPageOptions={[100]}
             disableSelectionOnClick
           />

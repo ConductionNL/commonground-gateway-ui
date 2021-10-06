@@ -64,16 +64,22 @@ export default function Source() {
 
   const router = useRouter()
   const {id} = router.query
-  var {data: source} = useGet({
-    path: "http://localhost/api/gateways/" + id
-  });
+
+  if (id != 'new') {
+    var {data: source} = useGet({
+      path: "http://localhost/api/gateways/" + id
+    });
+  }
+
+  console.log('Source');
   console.log(source);
 
-  var title = '';
+  var title = id;
+  if (id == 'new') {
+    title = 'New source';
+  }
   if (source != null && source != undefined) {
     title = source.name;
-  } else {
-    title = 'title'
   }
 
   const [value, setValue] = React.useState('one');
@@ -111,6 +117,7 @@ export default function Source() {
           <Box paddingTop={2} paddingBottom={2}>
 
             <h6>U can view your sources entities and logs here.</h6>
+
             <AppBar position="static" color="default">
               <Tabs
                 value={value}
@@ -120,15 +127,21 @@ export default function Source() {
                 centered
               >
                 <Tab label="Main" value="one" {...a11yProps('one')} />
-                <Tab label="Entities" value="two" {...a11yProps('two')} />
-                <Tab label="Logs" value="three" {...a11yProps('three')} />
+                {
+                  id != 'new' &&
+                  <>
+                    <Tab label="Entities" value="two" {...a11yProps('two')} />
+                    <Tab label="Logs" value="three" {...a11yProps('three')} />
+                  </>
+                }
               </Tabs>
 
             </AppBar>
             <TabPanel value={value} index="one">
               <Card className={classes.root}>
                 <CardContent>
-                  Description about gateway + some other data we could show
+                  Manage your source here
+                  <br/><br/>
                   <div>
                     <TextField
                       required
@@ -151,7 +164,12 @@ export default function Source() {
               </Card>
             </TabPanel>
             <TabPanel value={value} index="two">
-              <EntitiesTable gatewayId={title}/>
+              {
+                source != undefined && source != null && source.entities != null ?
+                  <EntitiesTable entities={source.entities}/>
+                  :
+                  <EntitiesTable/>
+              }
             </TabPanel>
             <TabPanel value={value} index="three">
               Get and show logs here from gateway

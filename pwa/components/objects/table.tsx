@@ -15,9 +15,6 @@ export default function EntityTable() {
   var {data: objects} = useGet({
     path: "/object_entities"
   });
-  if (objects != null) {
-    console.log(objects);
-  }
 
   /* lets catch hydra */
   if (objects != null && objects["results"] !== undefined) {
@@ -29,12 +26,11 @@ export default function EntityTable() {
   }
 
   const columns = [
+    { field: 'id', headerName: 'ID', flex: 2   },
     { field: 'entity.name', headerName: 'Name', flex: 1, valueFormatter: (params) => params.row?.entity?.name  },
-    { field: 'auth', headerName: 'Auth', flex: 1 },
-    { field: 'documentation', headerName: 'Documentation', flex: 1 },
-    { field: 'location', headerName: 'Location', flex: 1 },
-    {
-      field: 'id',
+    { field: 'entity.endpoint', headerName: 'Endpoint', flex: 1, valueFormatter: (params) => params.row?.entity?.endpoint  },
+    { field: 'entity.route', headerName: 'Route', flex: 1, valueFormatter: (params) => params.row?.entity?.route  }, {
+      field: 'link',
       headerName: 'View',renderCell: (params: GridRenderCellParams) => (
         <strong>
           <Link

@@ -1,7 +1,5 @@
 import {useRouter} from 'next/router'
-import Button from "@material-ui/core/Button";
 import React from "react";
-import Link from 'next/link'
 
 import Typography from '@material-ui/core/Typography';
 import Layout from "../../components/common/layout";
@@ -15,7 +13,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import AttributesTable from "../../components/entities/attributes_table";
+import AttributesTable from "../../components/attributes/table";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -57,8 +55,16 @@ export default function Entity()  {
   const title = id
 
   var {data: entity} = useGet({
-    path: "/entities/" + id
+    path: "http://localhost/api/entities/" + id
   });
+
+  /* lets catch hydra */
+  // if (entity != null && entity["results"] !== undefined) {
+  //   entity = entity["results"];
+  //   entity.id = entity.identificatie;
+  // }
+
+  console.log('entity:');
   console.log(entity);
 
 
@@ -129,7 +135,12 @@ export default function Entity()  {
               </Card>
             </TabPanel>
             <TabPanel value={value} index="two">
-              <AttributesTable objectId={title} />
+              {
+                entity != undefined && entity != null && entity.attributes != null ?
+                  <AttributesTable attributes={entity.attributes}/>
+                  :
+                  <AttributesTable />
+              }
             </TabPanel>
             <TabPanel value={value} index="three">
               Get and show data here from gateway
