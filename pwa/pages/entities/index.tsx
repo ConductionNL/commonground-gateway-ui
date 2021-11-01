@@ -58,7 +58,11 @@ function Index() {
           <Box paddingTop={2} paddingBottom={2}>
 
             <h6>U can view your entities here.</h6>
-
+            <Box style={{marginBottom: '5px'}} sx={{display: 'flex', justifyContent: 'flex-end'}}>
+              <Link href="/entities/new">
+                <Button variant="outlined">Add new</Button>
+              </Link>
+            </Box>
             <EntitiesTable/>
 
           </Box>
