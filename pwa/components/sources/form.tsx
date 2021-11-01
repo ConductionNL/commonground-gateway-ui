@@ -17,50 +17,26 @@ import CardContent from "@material-ui/core/CardContent";
 
 export default function sourceForm({title, source = null}) {
 
+  const {mutate: post} = useMutate({
+    verb: "POST",
+    path: `/gateways`,
+  });
+
   const saveSource = event => {
     event.preventDefault();
 
-    console.log(event.target.name.value);
     const data = {
       name: event.target.name.value,
+      location: event.target.location.value,
+      auth: event.target.auth.value,
     }
-    const {mutate: post} = useMutate({
-      verb: "POST",
-      path: `localhost/api/gateways`,
-      onMutate: (body => data)
-    });
-    console.log('Post:');
-    console.log(post);
-    console.log('Data:');
-    console.log(data);
+
+    post(data).then(() => {alert('yes')});
 
   }
-
-  // Dit werkt maar is ongewenst
-  const saveSource2 = async event => {
-    event.preventDefault()
-
-    const res = await fetch('http://localhost/api/gateways', {
-      body: JSON.stringify({
-        name: event.target.name.value,
-        location: event.target.location.value,
-        auth: event.target.auth.value,
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST'
-    })
-
-    const result = await res.json()
-    console.log('Result:');
-    console.log(result);
-
-  }
-
 
   return (
-    <form onSubmit={saveSource2}>
+    <form onSubmit={saveSource}>
       <Grid container spacing={2}>
         <Grid item xs={6} sm={6} md={6}>
           <Grid item xs={12}>
