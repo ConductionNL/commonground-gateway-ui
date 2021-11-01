@@ -2,14 +2,16 @@ import {useRouter} from 'next/router'
 import React from "react";
 import Link from 'next/link'
 
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import {useGet, useMutate, Poll, Get, RestfulProvider} from "restful-react";
 import {Mutate} from 'restful-react'
-import {Theme, createStyles, makeStyles} from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   AppBar,
   Button,
@@ -20,15 +22,15 @@ import {
   RadioGroup,
   TextField,
   Tooltip
-} from "@material-ui/core";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+} from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import EntitiesTable from "../../components/entities/entity_table";
 import SourceForm from "../../components/sources/form";
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import SendIcon from '@material-ui/icons/Send';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import SendIcon from '@mui/icons-material/Send';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -149,7 +151,7 @@ export default function Source() {
                   Manage your source here
                   <Tooltip title="View redoc">
                     <a target="_blank" href="https://commonground-gateway.readthedocs.io/en/development/features/">
-                      <IconButton>
+                      <IconButton size="large">
                         <HelpOutlineIcon color="primary"/>
                       </IconButton>
                     </a>
