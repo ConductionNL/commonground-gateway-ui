@@ -6,7 +6,7 @@ export function AppWrapper({ children }) {
   let sharedState = {
     user: null,
     meUrl: "http://localhost/me",
-    apiUrl: "http://localhost/api"
+    apiUrl: "http://localhost/admin"
   }
 
   return (
