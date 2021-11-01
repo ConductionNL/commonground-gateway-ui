@@ -12,7 +12,7 @@ services:
 
   php:
     &php
-    image: ghcr.io/conductionnl/commonground-gateway-php:dev
+    image: ghcr.io/conductionnl/commonground-gateway-php:admin-V1.0.211101
     depends_on:
       - db
     volumes:
@@ -29,13 +29,14 @@ services:
 
   api:
     &nginx
-    image: ghcr.io/conductionnl/commonground-gateway-nginx:latest
+    image: ghcr.io/conductionnl/commonground-gateway-nginx:admin-V1.0.211101
     depends_on:
       - php
     ports:
       - "80:80"
     environment:
       - NGINX_HOST=php
+      - NGINX_ENV=${APP_ENV}
 
   db:
     image: mysql:5.7
