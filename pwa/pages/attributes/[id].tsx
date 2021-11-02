@@ -1,16 +1,16 @@
 import React from "react";
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
-import {Card, CardContent} from "@material-ui/core";
-import {makeStyles} from "@material-ui/core/styles";
+import Box from "@mui/material/Box";
+import {Card, CardContent} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import AttributesForm from "../../components/attributes/form";
-import Button from "@material-ui/core/Button";
-import {HelpRounded} from "@material-ui/icons";
+import Button from "@mui/material/Button";
+import {HelpRounded} from "@mui/icons-material";
 import {useGet} from "restful-react";
 import {GridRenderCellParams} from "@mui/x-data-grid";
-import Link from "@material-ui/core/Link";
+import Link from "@mui/material/Link";
 import {useRouter} from "next/router";
 
 const useStyles = makeStyles((theme) => ({

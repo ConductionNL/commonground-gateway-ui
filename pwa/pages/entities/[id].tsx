@@ -1,18 +1,20 @@
 import {useRouter} from 'next/router'
 import React from "react";
 
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import {useGet, Poll, Get, RestfulProvider} from "restful-react";
-import {Theme, createStyles, makeStyles} from '@material-ui/core/styles';
-import {AppBar, TextField} from "@material-ui/core";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import {AppBar, TextField} from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import AttributesTable from "../../components/attributes/table";
 import EntityForm from "../../components/entities/form";
 
