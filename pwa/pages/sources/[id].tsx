@@ -1,5 +1,5 @@
 import {useRouter} from 'next/router'
-import React from "react";
+import React, { useEffect } from "react";
 import Link from 'next/link'
 
 import Typography from '@material-ui/core/Typography';
@@ -29,6 +29,7 @@ import EntitiesTable from "../../components/entities/entity_table";
 import SourceForm from "../../components/sources/form";
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import SendIcon from '@material-ui/icons/Send';
+import { useAppContext } from "../../components/context/state";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -66,18 +67,30 @@ function a11yProps(index: any) {
 export default function Source() {
 
   const router = useRouter()
-  const {id} = router.query
-  var source = null
+  const { id } = router.query
+  const [source, setSource] = React.useState(null);
+  const context = useAppContext();
 
-  if (id != 'new') {
-    var {data: retrievedSource} = useGet({
-      path: "http://localhost/api/gateways/" + id
-    });
-    source = retrievedSource;
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      getSource(id);
+    }
+  }, []);
+
+  const getSource = (id = null) => {
+    useEffect(() => {
+      fetch(context.apiUrl + "/gateways", {
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then((data) => {
+          setSource(data);
+        });
+    }, []);
   }
-
-  console.log('Source');
-  console.log(source);
 
   var title = id;
   if (id == 'new') {
