@@ -1,16 +1,16 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import PersonIcon from '@material-ui/icons/Person';
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
+import MailIcon from '@mui/icons-material/Mail';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import PersonIcon from '@mui/icons-material/Person';
 
-import {makeStyles} from "@material-ui/core/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme) => ({
@@ -61,13 +61,13 @@ export default function Footer() {
       <Box
         px={{ xs: 3, sm: 10 }}
         py={{ xs: 5, sm: 10 }}
-        bgcolor="#A3B2B6"
+        bgcolor="#21303F"
         color="white"
         className={classes.sectionDesktop}
       >
         <Container maxWidth="lg">
           <Grid container spacing={5}>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box borderBottom={1}>Help</Box>
               <Box>
                 <Link href="/" color="inherit">
@@ -86,35 +86,35 @@ export default function Footer() {
               </Box>
             </Grid>
 
-            <Grid item xs={12} sm={4}>
-              <Box borderBottom={1}>Participerende gemeenten</Box>
-              <Box>Deventer
-              </Box>
-              <Box>Enschede
-              </Box>
-              <Box>Groningen
-              </Box>
-              <Box>Leeuwarden</Box>
-              <Box>Zaanstad
-              </Box>
-              <Box>Zwolle
-              </Box>
-            </Grid>
+            {/*<Grid item xs={12} sm={4}>*/}
+            {/*  <Box borderBottom={1}>Participerende gemeenten</Box>*/}
+            {/*  <Box>Deventer*/}
+            {/*  </Box>*/}
+            {/*  <Box>Enschede*/}
+            {/*  </Box>*/}
+            {/*  <Box>Groningen*/}
+            {/*  </Box>*/}
+            {/*  <Box>Leeuwarden</Box>*/}
+            {/*  <Box>Zaanstad*/}
+            {/*  </Box>*/}
+            {/*  <Box>Zwolle*/}
+            {/*  </Box>*/}
+            {/*</Grid>*/}
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box borderBottom={1}>Contact</Box>
               <Box>
-                  Stadhuisplein 100 <br />
-                  1506 MZ Zaandam
+                  Lauriergracht 14h <br />
+                  1016 RL Amsterdam
               </Box>
               <Box>
-                <Link href="tel:14 075" color="inherit">
-                14 075
+                <Link href="tel:+31 (0)85 3036840" color="inherit">
+                  +31 (0)85 3036840
                 </Link>
               </Box>
               <Box>
-                <Link href="mailto:info@Zaanstad.nl" color="inherit">
-                  info@Zaanstad.nl
+                <Link href="mailto:info@conduction.nl" color="inherit">
+                  info@conduction.nl
                 </Link>
               </Box>
             </Grid>

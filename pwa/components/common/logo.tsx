@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
+import Container from '@mui/material/Container';
+import Link from '@mui/material/Link';
 
 export default function Logo() {
   return (
@@ -8,7 +8,7 @@ export default function Logo() {
       <Container>
         <div style={{margin: 'auto',width: '400px'}}>
           <Link href="/">
-            <Image src="/../public/logo_zaanstad.svg" height={100} width={400} alt="Picture of the author"/>
+            <Image src="/../public/logo_conduction_white.png" height={125} width={560} alt="Picture of the author"/>
           </Link>
         </div>
       </Container>
