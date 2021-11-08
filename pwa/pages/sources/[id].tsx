@@ -1,31 +1,36 @@
 import {useRouter} from 'next/router'
-import Button from "@material-ui/core/Button";
 import React from "react";
 import Link from 'next/link'
 
-import Header from "../../components/common/header";
-import Container from "@material-ui/core/Container";
-import Footer from "../../components/common/footer";
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import Layout from "../../components/common/layout";
-import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
-import ActionMenu from "../../components/common/actionmenu";
+import Grid from "@mui/material/Grid";
 import PageHeader from "../../components/common/pageheader";
-import Box from "@material-ui/core/Box";
-import {useGet, Poll, Get, RestfulProvider} from "restful-react";
-import {Theme, createStyles, makeStyles} from '@material-ui/core/styles';
-import {AppBar, TextField} from "@material-ui/core";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import CasesTable from "../../components/cases/table";
-import OverviewInfo from "../../components/cases/overview_info";
-import ContactPerson from "../../components/cases/contact_person";
-import TasksTable from "../../components/tasks/table";
+import Box from "@mui/material/Box";
+import {useGet, useMutate, Poll, Get, RestfulProvider} from "restful-react";
+import {Mutate} from 'restful-react'
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import {
+  AppBar,
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  IconButton, Radio,
+  RadioGroup,
+  TextField,
+  Tooltip
+} from "@mui/material";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
 import EntitiesTable from "../../components/entities/entity_table";
-import ClaimsTable from "../../components/claims/table";
+import SourceForm from "../../components/sources/form";
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import SendIcon from '@mui/icons-material/Send';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -64,11 +69,13 @@ export default function Source() {
 
   const router = useRouter()
   const {id} = router.query
+  var source = null
 
   if (id != 'new') {
-    var {data: source} = useGet({
+    var {data: retrievedSource} = useGet({
       path: "http://localhost/api/gateways/" + id
     });
+    source = retrievedSource;
   }
 
   console.log('Source');
@@ -78,7 +85,7 @@ export default function Source() {
   if (id == 'new') {
     title = 'New source';
   }
-  if (source != null && source != undefined) {
+  if (source != null) {
     title = source.name;
   }
 
@@ -129,10 +136,11 @@ export default function Source() {
                 <Tab label="Main" value="one" {...a11yProps('one')} />
                 {
                   id != 'new' &&
-                  <>
-                    <Tab label="Entities" value="two" {...a11yProps('two')} />
-                    <Tab label="Logs" value="three" {...a11yProps('three')} />
-                  </>
+                  <Tab label="Entities" value="two" {...a11yProps('two')} />
+                }
+                {
+                  id != 'new' &&
+                  <Tab label="Logs" value="three" {...a11yProps('three')} />
                 }
               </Tabs>
 
@@ -141,25 +149,18 @@ export default function Source() {
               <Card className={classes.root}>
                 <CardContent>
                   Manage your source here
+                  <Tooltip title="View redoc">
+                    <a target="_blank" href="https://commonground-gateway.readthedocs.io/en/development/features/">
+                      <IconButton size="large">
+                        <HelpOutlineIcon color="primary"/>
+                      </IconButton>
+                    </a>
+                  </Tooltip>
                   <br/><br/>
-                  <div>
-                    <TextField
-                      required
-                      id="filled-required"
-                      label="Name"
-                      defaultValue={title}
-                      variant="filled"
-                    />
-                    <br/>
-                    <TextField
-                      id="filled-multiline-static"
-                      label="Description"
-                      multiline
-                      rows={4}
-                      defaultValue="Description about gateway"
-                      variant="filled"
-                    />
-                  </div>
+
+
+                  <SourceForm title={title} source={source}/>
+
                 </CardContent>
               </Card>
             </TabPanel>

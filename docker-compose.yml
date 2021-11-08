@@ -1,9 +1,18 @@
 version: "3.4"
 
 services:
+  #  pwa:
+  #    &pwa
+  #    image: ghcr.io/conductionnl/commonground-gateway-ui:dev
+  #    build: pwa
+  #    depends_on:
+  #      - php
+  #    ports:
+  #      - "81:3000"
+
   php:
     &php
-    image: conduction/commonground-gateway-php:dev
+    image: ghcr.io/conductionnl/commonground-gateway-php:admin-V1.0.211101
     depends_on:
       - db
     volumes:
@@ -20,13 +29,14 @@ services:
 
   api:
     &nginx
-    image: conduction/commonground-gateway-nginx:latest
+    image: ghcr.io/conductionnl/commonground-gateway-nginx:admin-V1.0.211101
     depends_on:
       - php
     ports:
       - "80:80"
     environment:
       - NGINX_HOST=php
+      - NGINX_ENV=${APP_ENV}
 
   db:
     image: mysql:5.7
@@ -39,6 +49,9 @@ services:
       - db-mysql:/var/lib/mysql:rw
     ports:
       - "3366:3306"
+        
+  redis:
+    image: redis:4-alpine
 
 volumes:
   db-data: {}
