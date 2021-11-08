@@ -17,9 +17,13 @@ import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import SubscriptionsIcon from '@material-ui/icons/Subscriptions';
-import HomeIcon from '@material-ui/icons/Home';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import EmojiObjectsIcon from '@material-ui/icons/EmojiObjects';
+import CardTravelIcon from '@material-ui/icons/CardTravel';
+import KeyboardTabIcon from '@material-ui/icons/KeyboardTab';
+import AddToQueueIcon from '@material-ui/icons/AddToQueue';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,62 +51,62 @@ export default function ActionMenu() {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button onClick={() => router.push('/products')}>
-          <ListItemIcon>
-            <ShoppingCartIcon />
-          </ListItemIcon>
-          <ListItemText primary="Producten en Diensten" />
-        </ListItem>
         <Divider />
-        <ListItem button onClick={() => router.push('/messages')}>
+        <ListItem button onClick={() => router.push('/sources')}>
           <ListItemIcon>
-            <MessageIcon />
+            <CardTravelIcon/>
           </ListItemIcon>
-          <ListItemText primary="Berichtenbox" />
+          <ListItemText primary="Sources" />
+        </ListItem>
+        <ListItem button onClick={() => router.push('/entities')}>
+          <ListItemIcon>
+            <AddToQueueIcon/>
+          </ListItemIcon>
+          <ListItemText primary="Entities" />
         </ListItem>
 
-        <ListItem button onClick={() => router.push('/tasks')}>
+        <ListItem button onClick={() => router.push('/objects')}>
           <ListItemIcon>
-            <PlaylistAddCheckIcon />
+            <EmojiObjectsIcon/>
           </ListItemIcon>
-          <ListItemText primary="Taken" />
+          <ListItemText primary="Objects" />
         </ListItem>
 
-        <ListItem button onClick={() => router.push('/cases')}>
+        <ListItem button onClick={() => router.push('/logs')}>
           <ListItemIcon>
-            <SubscriptionsIcon />
+            <KeyboardTabIcon />
           </ListItemIcon>
-          <ListItemText primary="Lopende Zaken" />
+          <ListItemText primary="Logs" />
         </ListItem>
 
-        <Divider />
-        <ListItem button onClick={() => router.push('/data')}>
-          <ListItemIcon>
-            <AssignmentIndIcon />
-          </ListItemIcon>
-          <ListItemText primary="Identiteit" />
-        </ListItem>
+        {/*<Divider />*/}
+        {/*<ListItem button onClick={() => router.push('/data')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <AssignmentIndIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Identiteit" />*/}
+        {/*</ListItem>*/}
 
-        <ListItem button onClick={() => router.push('/workAndIncome')}>
-          <ListItemIcon>
-            <WorkIcon />
-          </ListItemIcon>
-          <ListItemText primary="Werk en Inkomen" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/workAndIncome')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <WorkIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Werk en Inkomen" />*/}
+        {/*</ListItem>*/}
 
-        <ListItem button onClick={() => router.push('/livingAndTax')}>
-          <ListItemIcon>
-            <HomeIcon />
-          </ListItemIcon>
-          <ListItemText primary="Wonen en Belasting" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/livingAndTax')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <HomeIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Wonen en Belasting" />*/}
+        {/*</ListItem>*/}
 
-        <ListItem button onClick={() => router.push('/vault')}>
-          <ListItemIcon>
-            <LockIcon />
-          </ListItemIcon>
-          <ListItemText primary="Datakluis" />
-        </ListItem>
+        {/*<ListItem button onClick={() => router.push('/vault')}>*/}
+        {/*  <ListItemIcon>*/}
+        {/*    <LockIcon />*/}
+        {/*  </ListItemIcon>*/}
+        {/*  <ListItemText primary="Datakluis" />*/}
+        {/*</ListItem>*/}
 
       </List>
     </div>
