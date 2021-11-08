@@ -15,24 +15,50 @@ import Box from "@mui/material/Box";
 import SendIcon from "@mui/icons-material/Send";
 import CardContent from "@mui/material/CardContent";
 
-export default function sourceForm({title, source = null}) {
+export default function sourceForm({ title, fetchedSource = null }) {
 
-  const {mutate: post} = useMutate({
-    verb: "POST",
-    path: `/gateways`,
-  });
+  const [source, setSource] = React.useState(null);
+  const context = useAppContext();
+
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (fetchedSource !== null) {
+        setSource(fetchedSource);
+      }
+    }
+  }, []);
 
   const saveSource = event => {
-    event.preventDefault();
+    if (typeof window !== "undefined") {
+      event.preventDefault(); 
 
-    const data = {
-      name: event.target.name.value,
-      location: event.target.location.value,
-      auth: event.target.auth.value,
+      const data = {
+        name: event.target.name.value,
+        location: event.target.location.value,
+        auth: event.target.auth.value,
+      }
+
+      let endpoint = '';
+      if (source.id !== undefined && source.id !== null) {
+        endpoint = "/admin/gateways" + source.id;
+      } else {
+        endpoint = "/admin/gateways";
+      }
+
+      fetch(context.apiUrl + endpoint, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then((data) => {
+          if (typeof window !== "undefined") {
+            setSource(data)
+          }
+        });
     }
-
-    post(data).then(() => {alert('yes')});
-
   }
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,21 +9,27 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import {useGet} from "restful-react";
 import {DataGrid, GridRenderCellParams} from "@mui/x-data-grid";
+import { useAppContext } from "../context/state";
 
 export default function EntityTable() {
 
-  var {data: sources} = useGet({
-    path: "/gateways"
-  });
+  const [sources, setSources] = React.useState(null);
+  const context = useAppContext();
 
-  /* lets catch hydra */
-  if (sources != null && sources["results"] !== undefined) {
-    sources = sources["results"];
-
-    for (let i = 0; i < sources.length; i++) {
-      sources[i].id = sources[i].identificatie;
-    }
-  }
+  useEffect(() => {
+    fetch(context.apiUrl + "/gateways", {
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+      .then(response => response.json())
+      .then((data) => {
+        setSources(data['hydra:member']);
+        console.log('Certs:')
+        console.log(data)
+      });
+  }, []);
 
   const columns = [
     { field: 'name', headerName: 'Name', flex: 1 },
@@ -32,7 +38,7 @@ export default function EntityTable() {
     { field: 'location', headerName: 'Location', flex: 3 },
     {
       field: 'id',
-      headerName: 'View',renderCell: (params: GridRenderCellParams) => (
+      headerName: 'View', renderCell: (params: GridRenderCellParams) => (
         <strong>
           <Link
             href={"/sources/" + params.value}
@@ -40,21 +46,22 @@ export default function EntityTable() {
             View
           </Link>
         </strong>
-      ),}
+      ),
+    }
   ];
 
 
   return (
-    <div style={{height: 400, width: '100%'}}>
+    <div style={{ height: 400, width: '100%' }}>
       {sources ? (
-          <DataGrid
-            rows={sources}
-            columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[100]}
-            disableSelectionOnClick
-          />
-        )
+        <DataGrid
+          rows={sources}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[100]}
+          disableSelectionOnClick
+        />
+      )
         :
         (
           <DataGrid
